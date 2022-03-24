@@ -1,11 +1,15 @@
-import React { Components } from 'react'
+import React, { Components } from 'react'
+import movieData from '../../movieData'
+import Header from '../Header/Header.js'
+import Main from '../Main/Main.js'
+import './App.css'
 
 class App extends Component {
-     constructor() {
+     constructor(movieData) {
           super();
           this.state = {
-               movies: [],
-               displayed: []
+               movies: movieData.movies,
+               displayed: movieData.movies
           }
      }
 
@@ -17,9 +21,11 @@ class App extends Component {
           return(
                <main className='App'>
                <Header filter={this.filter} />
-               <Main />
+               <Main movies={this.state.displayed}/>
                </main>
 
           )
      }
 }
+
+export default App;
