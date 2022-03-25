@@ -13,9 +13,8 @@ class App extends Component {
           }
      }
 
-      filter = (event) => {
-      let searchTitle = event.target.value
-      this.setState({displayed: this.movies.filter(movie => movie.title.toLowerCase.includes(searchTitle.toLowerCase))
+      filter = (searchedTitle) => {
+      this.setState({displayed: this.state.movies.filter(movie => movie.title.toLowerCase().includes(searchedTitle.toLowerCase()))
       })
      }
 

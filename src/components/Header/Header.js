@@ -1,12 +1,42 @@
 import React from 'react'
 import './Header.css'
 
-const Header = () => {
- 
+class Header extends React.Component {
+  constructor(props) {
+    super();
+    this.state = {
+      search: ''
+    }
+  }
 
- return(
-      <h1>Rancid Tom</h1>
- )
-}
+  handleChange = event => {
+    event.preventDefault();
+    this.setState({ search: event.target.value }, () => {
+      this.props.filter(this.state.search);
+    })
+  }
 
-export default Header
+ render () {
+   return (
+     <header>
+      <h1>Rancid Tomatillos</h1>
+
+      <label htmlFor='search'>Search Movies</label>
+
+      <input type='text'
+        placeholder='Search for a specific movie'
+        name='search'
+        id='search'
+        value={this.state.search}
+        onChange={event => this.handleChange(event)}
+      />
+
+      <button>Home</button>
+     </header>
+   )
+
+ }
+
+};
+
+export default Header;
