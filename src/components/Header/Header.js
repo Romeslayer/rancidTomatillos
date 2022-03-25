@@ -17,7 +17,6 @@ class Header extends React.Component {
   }
 
  render () {
-   {console.log(this.props)}
    return (
      <header>
       <h1>Rancid Tomatillos</h1>
@@ -31,6 +30,8 @@ class Header extends React.Component {
         value={this.state.search}
         onChange={event => this.handleChange(event)}
       />
+
+      <button>Home</button>
      </header>
    )
 
