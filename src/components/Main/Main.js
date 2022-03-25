@@ -1,6 +1,6 @@
 import React from 'react'
 import './Main.css'
-import Card from './Card'
+import Card from '../Card/Card'
 
 const Main = ({movies}) => {
 
@@ -9,9 +9,7 @@ const Main = ({movies}) => {
                <Card 
                  id={movie.id}
                  title={movie.title}
-                 backdropPath={movie.backdrop_path}
-                 avgRating={movie.avarage_rating}
-                 releaseDate={movie.release_date}
+                 posterPath={movie.poster_path}
                />
           )
      })
