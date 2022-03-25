@@ -1,3 +1,6 @@
 .movies-section {
-display: inline-block;
+display: flex;
+flex-wrap: wrap;
+justify-content: left;
+margin: 1.4%;
 }

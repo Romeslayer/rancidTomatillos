@@ -20,7 +20,7 @@ class App extends Component {
 
      render() {
           return(
-               <main className='App'>
+               <main className='app'>
                <Header filter={this.filter} />
                <Main movies={this.state.displayed}/>
                </main>
