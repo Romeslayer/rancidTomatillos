@@ -1,11 +1,11 @@
-import React, { Components } from 'react'
+import React, { Component } from 'react'
 import movieData from '../../movieData'
 import Header from '../Header/Header.js'
 import Main from '../Main/Main.js'
 import './App.css'
 
 class App extends Component {
-     constructor(movieData) {
+     constructor() {
           super();
           this.state = {
                movies: movieData.movies,
@@ -13,8 +13,10 @@ class App extends Component {
           }
      }
 
-      filter = () => {
-
+      filter = (event) => {
+      let searchTitle = event.target.value
+      this.setState({displayed: this.movies.filter(movie => movie.title.toLowerCase.includes(searchTitle.toLowerCase))
+      })
      }
 
      render() {
