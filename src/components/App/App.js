@@ -3,6 +3,7 @@ import movieData from '../../movieData'
 import Header from '../Header/Header.js'
 import Main from '../Main/Main.js'
 import Movie from '../Movie/Movie.js'
+import data from '../../singlePageData.js';
 import './App.css'
 
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
           this.state = {
                movies: movieData.movies,
                displayed: movieData.movies,
-               singleMovie: ''
+               singleMovie: data
           }
      }
 
@@ -33,7 +34,7 @@ class App extends Component {
           return(
                <main className='app'>
                <Header filter={this.filter} />
-               {window.location.href === `http://localhost:3000/` ? <Main movies={this.state.displayed} displayMovie={this.displayMovie}/> : <Movie  />}
+               {window.location.href === `http://localhost:3000/` ? <Main movies={this.state.displayed} displayMovie={this.displayMovie}/> : <Movie movie={this.state.singleMovie} />}
                </main>
 
           )
