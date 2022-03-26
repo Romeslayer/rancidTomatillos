@@ -20,18 +20,19 @@ class Header extends React.Component {
    return (
      <header>
       <h1>Rancid Tomatillos</h1>
+      <div className='styling'>
+      <label className='search-label'htmlFor='search'>Search Movies</label>
 
-      <label htmlFor='search'>Search Movies</label>
-
-      <input type='text'
-        placeholder='Search for a specific movie'
+      <input className='search-bar' type='text'
+        placeholder='Search movies'
         name='search'
         id='search'
         value={this.state.search}
         onChange={event => this.handleChange(event)}
       />
-
-      <button>Home</button>
+      </div>
+      {console.log(window.location.href)}
+      {window.location.href === `http://localhost:3000/` ? '' : <button>Home</button>}
      </header>
    )
 
