@@ -3,6 +3,7 @@
      width: auto;
      margin: 5px 10px 5px 10px;
      box-shadow: 0 5px 13px 0 rgb(0 0 0 / 33%);
+     border-radius: 5px;
 }
 
 a {
