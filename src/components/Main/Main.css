@@ -1,0 +1,6 @@
+.movies-section {
+display: flex;
+flex-wrap: wrap;
+justify-content: left;
+margin: 1.4%;
+}
