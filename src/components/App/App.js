@@ -23,7 +23,7 @@ class App extends Component {
           return(
                <main className='app'>
                <Header filter={this.filter} />
-               { window.location.href === 'http://localhost:3000' ? <Main movies={this.state.displayed}/> : <Movie />}
+               {window.location.href === `http://localhost:3000/` ? <Main movies={this.state.displayed}/> : <Movie />}
                </main>
 
           )
