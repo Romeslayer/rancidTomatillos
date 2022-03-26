@@ -18,11 +18,11 @@ const timeConvert = (num) => {
 }
 
   return (
-    <section id={movie.id}>
+    <section className='movie-section' id={movie.id}>
       <img className="backdrop" src={movie.backdrop_path} alt={`${movie.title}`} />
-      <div>
+      <div className='movie-styling'>
         <img className="poster" src={movie.poster_path} alt={`${movie.title} promotional poster`} />
-        <div className="movieInfo">
+        <div className="movie-info">
           <h2>{movie.title}</h2>
           <p className="tagline">{movie.tagline}</p>
           {movie.genres ? <p>Genres: {genres}</p> : ""}

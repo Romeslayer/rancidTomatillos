@@ -1,0 +1,32 @@
+.movie-section {
+   display: flex;
+   width: 65%;
+   align-items: center;
+   flex-direction: column;
+   padding: 2em;
+}
+
+.backdrop {
+    width: 100%;
+    border-radius: 19px;
+    box-shadow: 0 5px 13px 0 rgb(0 0 0 / 33%);
+}
+
+.movie-styling {
+     margin-top: 1%;
+     display: flex;
+     background-color: #d8d8de;
+     border-radius: 15px;
+     overflow: hidden;
+}
+
+.poster {
+    width: 26%;
+    padding-right: 3%;
+}
+
+.movie-info {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+}
