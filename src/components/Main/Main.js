@@ -6,10 +6,11 @@ const Main = ({movies}) => {
 
      const movieCards = movies.map(movie => {
           return(
-               <Card 
+               <Card
                  id={movie.id}
                  title={movie.title}
                  posterPath={movie.poster_path}
+                 key={movie.id}
                />
           )
      })
