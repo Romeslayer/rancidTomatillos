@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import movieData from '../../movieData'
 import Header from '../Header/Header.js'
 import Main from '../Main/Main.js'
+import Movie from '../Movie/Movie.js'
 import './App.css'
 
 class App extends Component {
@@ -22,7 +23,7 @@ class App extends Component {
           return(
                <main className='app'>
                <Header filter={this.filter} />
-               <Main movies={this.state.displayed}/>
+               { window.location.href === 'http://localhost:3000' ? <Main movies={this.state.displayed}/> : <Movie />}
                </main>
 
           )
