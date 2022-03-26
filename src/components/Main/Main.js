@@ -2,14 +2,16 @@ import React from 'react'
 import './Main.css'
 import Card from '../Card/Card'
 
-const Main = ({movies}) => {
+const Main = ({movies, displayMovie}) => {
 
      const movieCards = movies.map(movie => {
           return(
-               <Card 
+               <Card
                  id={movie.id}
                  title={movie.title}
                  posterPath={movie.poster_path}
+                 key={movie.id}
+                 displayMovie={displayMovie}
                />
           )
      })

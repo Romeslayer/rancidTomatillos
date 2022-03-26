@@ -1,15 +1,16 @@
-import React from 'react' 
+import React from 'react'
 import './Card.css'
 
-const Card = ({id, posterPath, title}) => {
+const Card = ({id, posterPath, title, displayMovie}) => {
  return(
-      <a href={`http://localhost:3000/${id}`}>
-      <div id={id} className='card'>
-        <img src={posterPath} alt={title}></img>
+      <div id={id}
+      className='card'>
+        <img src={posterPath}
+        alt={title}
+        onClick={event => displayMovie(event)}></img>
       </div>
-      </a>
  )
 
-} 
+}
 
 export default Card

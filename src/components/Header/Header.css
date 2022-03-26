@@ -3,6 +3,7 @@ header {
      justify-content: flex-start;
      width: 100%;
      align-items: center;
+     background-color: #d8d8de;
 }
 
 h1 {
@@ -23,6 +24,14 @@ h1 {
 }
 
 button {
-     margin-left: 34%;
+    background-color: #2b2659;
+    color: white;
+    margin-left: 34%;
+    width: 109px;
+    height: 38px;
+    border-radius: 14px;
+    border-style: none;
+    cursor: pointer;
 }
+
 
