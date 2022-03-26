@@ -9,6 +9,6 @@ a {
 }
 
 .card {
-     display: inherit;
+     display: contents;
      width: 15%;
 }

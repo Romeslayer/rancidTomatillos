@@ -10,20 +10,30 @@ class App extends Component {
           super();
           this.state = {
                movies: movieData.movies,
-               displayed: movieData.movies
+               displayed: movieData.movies,
+               singleMovie: ''
           }
      }
 
       filter = (searchedTitle) => {
       this.setState({displayed: this.state.movies.filter(movie => movie.title.toLowerCase().includes(searchedTitle.toLowerCase()))
       })
-     }
+
+
+    }
+
+    displayMovie = (event) => {
+      let target = event.target.closest('.card');
+      if(target.id) {
+        window.location.href = `http://localhost:3000/${target.id}`
+      }
+    }
 
      render() {
           return(
                <main className='app'>
                <Header filter={this.filter} />
-               {window.location.href === `http://localhost:3000/` ? <Main movies={this.state.displayed}/> : <Movie />}
+               {window.location.href === `http://localhost:3000/` ? <Main movies={this.state.displayed} displayMovie={this.displayMovie}/> : <Movie  />}
                </main>
 
           )

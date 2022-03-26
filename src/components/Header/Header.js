@@ -18,11 +18,15 @@ class Header extends React.Component {
     })
   }
 
+  goHome = () => {
+    window.location.href = homeURL;
+  }
+
  render () {
    return (
      <header>
       <h1>Rancid Tomatillos</h1>
-      { window.location.href === `http://localhost:3000/` ?
+      {window.location.href === homeURL ?
         <div className='styling'>
           <label className='search-label' htmlFor='search'>Search Movies</label>
           <input className='search-bar'
@@ -32,8 +36,8 @@ class Header extends React.Component {
             id='search'
             value={this.state.search}
             onChange={event => this.handleChange(event)} />
-        </div> : '' }
-      {window.location.href === homeURL ? '' : <button onClick={window.location.href = homeURL}>Home</button>}
+        </div> : ''}
+      {window.location.href === homeURL ? '' : <button onClick={this.goHome}>Home</button>}
      </header>
    )
 
