@@ -1,8 +1,6 @@
 import React from 'react';
 import './Movie.css';
 
-
-
 const Movie = ({movie}) => {
   movie = movie.movie;
   let genres = movie.genres.join(', ');

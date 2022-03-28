@@ -4,17 +4,20 @@ import Header from '../Header/Header.js'
 import Main from '../Main/Main.js'
 import Movie from '../Movie/Movie.js'
 import data from '../../singlePageData.js';
+import getData from '../../apiCalls.js'
 import './App.css'
 
 class App extends Component {
      constructor() {
           super();
           this.state = {
-               movies: movieData.movies,
-               displayed: movieData.movies,
-               singleMovie: data
+               movies: null,
+               displayed: null,
+               singleMovie: null
           }
      }
+
+
 
       filter = (searchedTitle) => {
       this.setState({displayed: this.state.movies.filter(movie => movie.title.toLowerCase().includes(searchedTitle.toLowerCase()))
@@ -34,10 +37,15 @@ class App extends Component {
           return(
                <main className='app'>
                <Header filter={this.filter} />
-               {window.location.href === `http://localhost:3000/` ? <Main movies={this.state.displayed} displayMovie={this.displayMovie}/> : <Movie movie={this.state.singleMovie} />}
+               {this.state.displayed && <Main movies={this.state.displayed} displayMovie={this.displayMovie}/>}
+               {this.state.singleMovie && <Movie movie={this.state.singleMovie} />}
                </main>
 
           )
+     }
+
+     componentDidMount() {
+       getData('movies').then(result => this.setState({movies: result, displayed:result}))
      }
 }
 
