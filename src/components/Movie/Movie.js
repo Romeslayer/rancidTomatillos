@@ -1,7 +1,8 @@
 import React from 'react';
 import './Movie.css';
+import getData from '../../apiCalls.js'
 
-const Movie = ({movie}) => {
+const Movie = (movie) => {
   movie = movie.movie;
   let genres = movie.genres.join(', ');
   let formatter = new Intl.NumberFormat('en-US', {

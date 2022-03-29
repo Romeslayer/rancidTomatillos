@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import movieData from '../../movieData'
 import Header from '../Header/Header.js'
 import Main from '../Main/Main.js'
 import Movie from '../Movie/Movie.js'
-import data from '../../singlePageData.js';
 import getData from '../../apiCalls.js'
 import './App.css'
 
@@ -29,15 +27,23 @@ class App extends Component {
     displayMovie = (event) => {
       let target = event.target.closest('.card');
       if(target.id) {
-        window.location.href = `http://localhost:3000/${target.id}`
+        getData(`movies`, target.id).then(result => {
+          this.setState({singleMovie: result})
+        })
+
       }
+    }
+
+    hideMovie = (event) => {
+      event.preventDefault();
+      this.setState({singleMovie:null})
     }
 
      render() {
           return(
                <main className='app'>
-               <Header filter={this.filter} />
-               {this.state.displayed && <Main movies={this.state.displayed} displayMovie={this.displayMovie}/>}
+               <Header filter={this.filter} displayHome={this.state.singleMovie} hideMovie={this.hideMovie} />
+               {this.state.displayed && !this.state.singleMovie && <Main movies={this.state.displayed} displayMovie={this.displayMovie}/>}
                {this.state.singleMovie && <Movie movie={this.state.singleMovie} />}
                </main>
 
