@@ -7,7 +7,7 @@ const getData = (endpoint, movieID) => {
     url = `https://rancid-tomatillos.herokuapp.com/api/v2/s${endpoint}`
   }
    return fetch(url)
-    .then(response => response.json());
+    
 }
 
 

@@ -72,12 +72,14 @@ class App extends Component {
        console.log('I am still running')
 
        getData('movies')
+        .then(response => {
+          if(!response.ok) throw new Error(`Error: ${response.status} ${response.statusText}`)
+        })
         .then(result => result['movies'])
         .then(data => {
          this.setState({movies: data, displayed:data})
         })
-        .catch(err => this.setState({hasError: true, message: err}))
-
+        .catch(err => this.setState({hasError: true, message: err.message}))
        }
 
 }
