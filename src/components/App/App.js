@@ -59,7 +59,7 @@ class App extends Component {
      render() {
           return(
                <main className='app'>
-               <Header filter={this.filter} displayHome={this.state.singleMovie} hideMovie={this.hideMovie} error={this.state.hasError} />
+               <Header filter={this.filter} displayHome={this.state.singleMovie} hideMovie={this.hideMovie} />
                {this.state.displayed && !this.state.singleMovie && !this.state.hasError && <Main movies={this.state.displayed} displayMovie={this.displayMovie}/>}
                {this.state.singleMovie && <Movie movie={this.state.singleMovie} />}
                {this.state.hasError && <DisplayMessage message={this.state.message} />}
@@ -72,9 +72,6 @@ class App extends Component {
        console.log('I am still running')
 
        getData('movies')
-        .then(response => {
-          if(!response.ok) throw new Error(`Error: ${response.status} ${response.statusText}`)
-        })
         .then(result => result['movies'])
         .then(data => {
          this.setState({movies: data, displayed:data})
