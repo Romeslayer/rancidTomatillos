@@ -11,7 +11,9 @@ class App extends Component {
           this.state = {
                movies: null,
                displayed: null,
-               singleMovie: null
+               singleMovie: null,
+               hasError: false,
+               message: null
           }
      }
 
@@ -39,11 +41,24 @@ class App extends Component {
       this.setState({singleMovie:null})
     }
 
+    deleteMessage = (event) => {
+      event.preventDefault();
+      this.setState({message: null})
+    }
+
+    changeMessage = (message) => {
+      this.setState({message: message})
+    }
+
+    componentDidCatch(error, info) {
+      this.setState({hasError: true});
+    }
+
      render() {
           return(
                <main className='app'>
-               <Header filter={this.filter} displayHome={this.state.singleMovie} hideMovie={this.hideMovie} />
-               {this.state.displayed && !this.state.singleMovie && <Main movies={this.state.displayed} displayMovie={this.displayMovie}/>}
+               <Header filter={this.filter} displayHome={this.state.singleMovie} hideMovie={this.hideMovie} error={this.state.hasError} />
+               {this.state.displayed && !this.state.singleMovie && !this.state.hasError && <Main movies={this.state.displayed} displayMovie={this.displayMovie}/>}
                {this.state.singleMovie && <Movie movie={this.state.singleMovie} />}
                </main>
 
@@ -51,8 +66,15 @@ class App extends Component {
      }
 
      componentDidMount() {
-       getData('movies').then(result => this.setState({movies: result, displayed:result}))
+       console.log('I am still running')
+
+       getData('movies')
+       .then(data => {
+        this.setState({movies: data, displayed:data})
+       })
      }
+
+
 }
 
 export default App;

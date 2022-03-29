@@ -37,6 +37,8 @@ class Header extends React.Component {
 
       {this.props.displayHome ? <button
         onClick={this.props.hideMovie}>Home</button> : '' }
+
+        {this.props.error && <p>Whoops there was an Error</p>}
      </header>
    )
 
