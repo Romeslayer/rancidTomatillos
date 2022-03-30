@@ -1,5 +1,6 @@
 import React from 'react'
 import './Header.css'
+import {Link} from 'react-router-dom'
 
 class Header extends React.Component {
   constructor(props) {
@@ -35,8 +36,10 @@ class Header extends React.Component {
       }
 
 
-      {this.props.displayHome || this.props.err ? <button
-        onClick={this.props.hideMovie}>Home</button> : '' }
+      {this.props.displayHome || this.props.err ? <Link to='/'>
+        <button
+onClick={this.props.hideMovie}>Home</button>
+        </Link> : '' }
      </header>
    )
 

@@ -4,6 +4,7 @@ import Main from '../Main/Main.js'
 import Movie from '../Movie/Movie.js'
 import DisplayMessage from '../DisplayMessage/DisplayMessage.js'
 import getData from '../../apiCalls.js'
+import {Route, Switch} from 'react-router-dom'
 
 import './App.css'
 
@@ -41,7 +42,6 @@ class App extends Component {
     }
 
     hideMovie = (event) => {
-      event.preventDefault();
       this.setState({singleMovie:null})
     }
 
@@ -59,9 +59,16 @@ class App extends Component {
           return(
                <main className='app'>
                <Header filter={this.filter} displayHome={this.state.singleMovie} hideMovie={this.hideMovie} err={this.state.hasError}/>
-               {this.state.displayed && !this.state.singleMovie && !this.state.hasError && <Main movies={this.state.displayed} displayMovie={this.displayMovie}/>}
                {this.state.singleMovie && <Movie movie={this.state.singleMovie} />}
                {this.state.hasError && <DisplayMessage message={this.state.message} />}
+                <Switch>
+                  <Route path='/' render={ () =>  <Main movies={this.state.displayed} displayMovie={this.displayMovie}/> }
+                  />
+                  <Route path='/movie/:id' render={() => <Movie movie={this.state.singleMovie}/> }
+                  />
+                  <Route path='/error' render={() => <DisplayMessage message={this.state.message} /> }
+                  />
+                </Switch>
                </main>
 
           )
