@@ -3,16 +3,16 @@ import './Header.css'
 
 class Header extends React.Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
-      search: ''
+      searchPhrase: ''
     }
   }
 
   handleChange = event => {
     event.preventDefault();
-    this.setState({ search: event.target.value }, () => {
-      this.props.filter(this.state.search);
+    this.setState({ searchPhrase: event.target.value }, () => {
+      this.props.filter(this.state.searchPhrase);
     })
   }
 
@@ -28,7 +28,7 @@ class Header extends React.Component {
         placeholder='Search movies'
         name='search'
         id='search'
-        value={this.state.search}
+        value={this.state.searchPhrase}
         onChange={event => this.handleChange(event)}
         />
       </div>
