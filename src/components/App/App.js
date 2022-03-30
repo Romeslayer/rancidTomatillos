@@ -58,7 +58,7 @@ class App extends Component {
      render() {
           return(
                <main className='app'>
-               <Header filter={this.filter} displayHome={this.state.singleMovie} hideMovie={this.hideMovie} />
+               <Header filter={this.filter} displayHome={this.state.singleMovie} hideMovie={this.hideMovie} err={this.state.hasError}/>
                {this.state.displayed && !this.state.singleMovie && !this.state.hasError && <Main movies={this.state.displayed} displayMovie={this.displayMovie}/>}
                {this.state.singleMovie && <Movie movie={this.state.singleMovie} />}
                {this.state.hasError && <DisplayMessage message={this.state.message} />}

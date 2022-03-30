@@ -21,7 +21,7 @@ class Header extends React.Component {
      <header>
       <h1>Rancid Tomatillos</h1>
 
-      {this.props.displayHome ? '' :
+      {this.props.displayHome || this.props.err ? '' :
       <div className='styling'>
       <label className='search-label' htmlFor='search'>Search Movies</label>
       <input className='search-bar' type='text'
@@ -35,7 +35,7 @@ class Header extends React.Component {
       }
 
 
-      {this.props.displayHome ? <button
+      {this.props.displayHome || this.props.err ? <button
         onClick={this.props.hideMovie}>Home</button> : '' }
      </header>
    )
