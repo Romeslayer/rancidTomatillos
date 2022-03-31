@@ -4,7 +4,7 @@ import Main from '../Main/Main.js'
 import Movie from '../Movie/Movie.js'
 import DisplayMessage from '../DisplayMessage/DisplayMessage.js'
 import getData from '../../apiCalls.js'
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 
 import './App.css'
 
@@ -28,19 +28,6 @@ class App extends Component {
 
     }
 
-    displayMovie = (id) => {
-      console.log(id)
-      console.log(this.state.singleMovie)
-      if (id !== this.state.singleMovie.id)
-        {
-          getData(`movies`, id)
-          .then(result => result.movie)
-          .then(data => {
-            this.setState({singleMovie: data}, () => <Movie movie={this.state.singleMovie}/>)
-          })
-          .catch(err => console.log(err))
-          }
-    }
 
     hideMovie = (event) => {
       this.setState({singleMovie:null})
@@ -59,17 +46,16 @@ class App extends Component {
      render() {
           return(
                <main className='app'>
+               <Redirect from='/' to='/movies' />
                <Header filter={this.filter} displayHome={this.state.singleMovie} hideMovie={this.hideMovie} err={this.state.hasError}/>
                {this.state.singleMovie && <Movie movie={this.state.singleMovie} />}
                {this.state.hasError && <DisplayMessage message={this.state.message} />}
                 <Switch>
-                  <Route exact path='/' render={ () =>  <Main movies={this.state.displayed} displayMovie={this.displayMovie}/> }
-                  />
-                  <Route exact path='/movie/:id' render={({match}) => { 
-                    let id = match.params.id
-                    console.log('here')
-                    this.displayMovie(id)
 
+                  <Route exact path='/movies' render={ () =>  <Main movies={this.state.displayed} /> }
+                  />
+                  <Route exact path='/movies/:id' render={({match}) => {
+                    return <Movie id={match.params.id}/>
                   }}
                   />
                   <Route path='/error' render={() => <DisplayMessage message={this.state.message} /> }
@@ -81,8 +67,6 @@ class App extends Component {
      }
 
      componentDidMount() {
-       console.log('I am still running')
-
        getData('movies')
         .then(result => result['movies'])
         .then(data => {
