@@ -36,7 +36,7 @@ class Movie extends Component {
 }
 
   render() {
-    return (
+    const section = (
       <section className='movie-section' id={this.props.id}>
 
         {this.state.movie ? <img className="backdrop" src={this.state.movie.backdrop_path} alt={`${this.state.movie.title}`} /> : ''}
@@ -54,6 +54,11 @@ class Movie extends Component {
           </div>
         </div>
       </section>
+    )
+    return (
+      <React.Fragment>
+       {section}
+       </React.Fragment>
     )
   }
 
