@@ -22,8 +22,7 @@ class Header extends React.Component {
      <header>
       <h1>Rancid Tomatillos</h1>
 
-      {this.props.displayHome || this.props.err ? '' :
-      <div className='styling'>
+      { this.props.filter ? <div className='styling'>
       <label className='search-label' htmlFor='search'>Search Movies</label>
       <input className='search-bar' type='text'
         placeholder='Search movies'
@@ -32,14 +31,12 @@ class Header extends React.Component {
         value={this.state.searchPhrase}
         onChange={event => this.handleChange(event)}
         />
-      </div>
-      }
-
-
-      {this.props.displayHome || this.props.err ? <Link to='/'>
+      </div> : <Link to='/movies'>
         <button
 onClick={this.props.hideMovie}>Home</button>
-        </Link> : '' }
+        </Link>
+      
+      }
      </header>
    )
 

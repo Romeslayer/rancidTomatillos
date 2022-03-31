@@ -14,7 +14,6 @@ class App extends Component {
           this.state = {
                movies: null,
                displayed: null,
-               singleMovie: null,
                hasError: false,
                message: null
           }
@@ -28,11 +27,6 @@ class App extends Component {
 
     }
 
-
-    hideMovie = (event) => {
-      this.setState({singleMovie:null})
-    }
-
     deleteMessage = (event) => {
       event.preventDefault();
       this.setState({message: null})
@@ -42,12 +36,14 @@ class App extends Component {
       this.setState({message: message})
     }
 
-
      render() {
           return(
                <main className='app'>
                <Redirect from='/' to='/movies' />
-               <Header filter={this.filter} displayHome={this.state.singleMovie} hideMovie={this.hideMovie} err={this.state.hasError}/>
+               <Switch>
+                 <Route exact path='/movies' render={ ()=>  <Header filter={this.filter} /> } />
+                 <Route render={() => <Header />}   />
+               </Switch>
                {this.state.singleMovie && <Movie movie={this.state.singleMovie} />}
                {this.state.hasError && <DisplayMessage message={this.state.message} />}
                 <Switch>
