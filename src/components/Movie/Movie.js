@@ -11,9 +11,9 @@ class Movie extends Component {
       movie: null,
       genres: null,
       formatter: new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-        }),
+        style: 'currency',
+        currency: 'USD',
+      }),
 
     }
   }
@@ -38,7 +38,6 @@ class Movie extends Component {
   render() {
     const section = (
       <section className='movie-section' id={this.props.id}>
-
         {this.state.movie ? <img className="backdrop" src={this.state.movie.backdrop_path} alt={`${this.state.movie.title}`} /> : ''}
         <div className='movie-styling'>
           {this.state.movie ? <img className="poster" src={this.state.movie.poster_path} alt={`${this.state.movie.title} promotional poster`} /> : ''}

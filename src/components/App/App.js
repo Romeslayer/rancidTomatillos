@@ -42,8 +42,6 @@ class App extends Component {
   render() {
     const main = (
       <main className='app'>
-      {/*<Redirect exact from='/' to='/movies' />*/}
-
         <Switch>
           <Redirect exact from='/' to='/movies' />
           <Route exact path='/movies' render={ ()=>  <Header filter={this.filter} /> } />
