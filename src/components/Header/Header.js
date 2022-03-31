@@ -1,6 +1,6 @@
-import React from 'react'
-import './Header.css'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import './Header.css';
+import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
   constructor(props) {
@@ -12,32 +12,45 @@ class Header extends React.Component {
 
   handleChange = event => {
     event.preventDefault();
-    this.setState({ searchPhrase: event.target.value }, () => {
+    this.setState({
+      searchPhrase: event.target.value
+    }, () => {
       this.props.filter(this.state.searchPhrase);
-    })
+    });
   }
 
- render () {
-   return (
+  render() {
+
+    const searchBar = (
+      <div className='styling'>
+        <label className='search-label' htmlFor='search'>Search Movies</label>
+        <input className='search-bar' type='text'
+          placeholder='Search movies'
+          name='search'
+          id='search'
+          value={this.state.searchPhrase}
+          onChange={event => this.handleChange(event)}
+        />
+      </div>
+    )
+
+    const homeButton = (
+      <Link to='/movies'>
+      <button onClick={this.props.hideMovie}>Home</button>
+      </Link>
+    )
+
+   const header = (
      <header>
       <h1>Rancid Tomatillos</h1>
-
-      { this.props.filter ? <div className='styling'>
-      <label className='search-label' htmlFor='search'>Search Movies</label>
-      <input className='search-bar' type='text'
-        placeholder='Search movies'
-        name='search'
-        id='search'
-        value={this.state.searchPhrase}
-        onChange={event => this.handleChange(event)}
-        />
-      </div> : <Link to='/movies'>
-        <button
-onClick={this.props.hideMovie}>Home</button>
-        </Link>
-      
-      }
+      {this.props.filter ? searchBar : homeButton }
      </header>
+   )
+
+   return (
+      <React.Fragment>
+        {header}
+      </React.Fragment>
    )
 
  }
