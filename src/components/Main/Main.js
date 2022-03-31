@@ -2,7 +2,7 @@ import React from 'react'
 import './Main.css'
 import Card from '../Card/Card'
 
-const Main = ({movies, displayMovie}) => {
+const Main = ({movies}) => {
   let movieCards
   console.log(movies)
 
@@ -14,7 +14,6 @@ const Main = ({movies, displayMovie}) => {
                 title={movie.title}
                 posterPath={movie.poster_path}
                 key={movie.id}
-                displayMovie={displayMovie}
               />
          )
     })

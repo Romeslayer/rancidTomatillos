@@ -28,17 +28,18 @@ class App extends Component {
 
     }
 
-    displayMovie = (event) => {
-      let target = event.target.closest('.card');
-      if(target.id) {
-        getData(`movies`, target.id)
+    displayMovie = (id) => {
+      console.log(id)
+      console.log(this.state.singleMovie)
+      if (id !== this.state.singleMovie.id)
+        {
+          getData(`movies`, id)
           .then(result => result.movie)
           .then(data => {
-            this.setState({singleMovie: data})
+            this.setState({singleMovie: data}, () => <Movie movie={this.state.singleMovie}/>)
           })
           .catch(err => console.log(err))
-
-      }
+          }
     }
 
     hideMovie = (event) => {
@@ -62,9 +63,14 @@ class App extends Component {
                {this.state.singleMovie && <Movie movie={this.state.singleMovie} />}
                {this.state.hasError && <DisplayMessage message={this.state.message} />}
                 <Switch>
-                  <Route path='/' render={ () =>  <Main movies={this.state.displayed} displayMovie={this.displayMovie}/> }
+                  <Route exact path='/' render={ () =>  <Main movies={this.state.displayed} displayMovie={this.displayMovie}/> }
                   />
-                  <Route path='/movie/:id' render={() => <Movie movie={this.state.singleMovie}/> }
+                  <Route exact path='/movie/:id' render={({match}) => { 
+                    let id = match.params.id
+                    console.log('here')
+                    this.displayMovie(id)
+
+                  }}
                   />
                   <Route path='/error' render={() => <DisplayMessage message={this.state.message} /> }
                   />

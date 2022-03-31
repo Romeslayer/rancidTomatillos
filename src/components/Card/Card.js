@@ -2,14 +2,14 @@ import React from 'react'
 import './Card.css'
 import {Link} from 'react-router-dom'
 
-const Card = ({id, posterPath, title, displayMovie}) => {
+const Card = ({id, posterPath, title}) => {
  return(
       <Link to={`/movie/${id}`} >
         <div id={id}
         className='card'>
           <img src={posterPath}
-          alt={title}
-          onClick={event => displayMovie(event)}></img>
+          alt={title}>
+          </img>
         </div>
       </Link>
  )
