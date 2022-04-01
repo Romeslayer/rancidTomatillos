@@ -4,7 +4,6 @@ import Card from '../Card/Card'
 
 const Main = ({movies}) => {
   let movieCards
-  console.log(movies)
 
   if (movies) {
     movieCards = movies.map(movie => {

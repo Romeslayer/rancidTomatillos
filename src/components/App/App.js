@@ -45,13 +45,25 @@ class App extends Component {
 
   }
 
+  resetError = () => {
+    this.setState({hasError: false, message: ''}, () => {
+      getData('movies')
+     .then(result => result['movies'])
+     .then(data => {
+      this.setState({movies: data, displayed:data})
+     })
+     .catch(err => this.setState({hasError: true, message: err.message}))
+    })
+    
+  }
+
   render() {
     const main = (
       <main className='app'>
         <Switch>
           <Redirect exact from='/' to='/movies' />
           <Route exact path='/movies' render={ ()=>  <Header filter={this.filter} /> } />
-          <Route render={() => <Header />}   />
+          <Route render={() => <Header resetError={this.resetError}/>}   />
         </Switch>
           {this.state.hasError ? <Redirect from='/' to='/error' /> : '' }
         <Switch>

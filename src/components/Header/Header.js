@@ -36,7 +36,7 @@ class Header extends React.Component {
 
     const homeButton = (
       <Link to='/movies'>
-      <button onClick={this.props.hideMovie}>Home</button>
+      <button onClick={this.props.resetError}>Home</button>
       </Link>
     )
 
