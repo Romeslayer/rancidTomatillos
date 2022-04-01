@@ -1,40 +1,67 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './Movie.css';
 import getData from '../../apiCalls.js'
 
-const Movie = (movie) => {
-  movie = movie.movie;
-  let genres = movie.genres.join(', ');
-  let formatter = new Intl.NumberFormat('en-US', {
-style: 'currency',
-currency: 'USD',
-})
 
-const timeConvert = (num) => {
-  var hours = Math.floor(num / 60);
-  var minutes = num % 60;
-  return `${hours}:${minutes}`;
+class Movie extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      movie: null,
+      genres: null,
+      formatter: new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }),
+
+    }
+  }
+
+  componentDidMount = () => {
+    this.displayMovie(this.props.id)
+  }
+
+  displayMovie = (id) => {
+    getData(`movies`, id)
+    .then(result => result.movie)
+    .then(data => this.setState({movie: data, genres: data.genres.join(', ')}))
+    .catch(err => {
+      return this.props.showError({err})})
+  }
+
+  timeConvert = (num) => {
+    var hours = Math.floor(num / 60);
+    var minutes = num % 60;
+    return `${hours}:${minutes}`;
 }
 
-  return (
-    <section className='movie-section' id={movie.id}>
-      <img className="backdrop" src={movie.backdrop_path} alt={`${movie.title}`} />
-      <div className='movie-styling'>
-        <img className="poster" src={movie.poster_path} alt={`${movie.title} promotional poster`} />
-        <div className="movie-info">
-          <h2>{movie.title}</h2>
-          <p className="tagline">{movie.tagline}</p>
-          {movie.genres ? <p>Genres: {genres}</p> : ""}
-          {movie.average_rating ? <p>Average Rating: {movie.average_rating}</p> : ""}
-          {movie.overview ? <p>Overview: {movie.overview}</p> : ""}
-          {movie.runtime ? <p>Runtime: {timeConvert(movie.runtime)}</p> : ""}
-          { movie.budget ? <p>Total budget: {formatter.format(movie.budget)}</p> : ""}
-          { movie.revenue ? <p>Total revenue: {formatter.format(movie.revenue)}</p> : ""}
+  render() {
+    const section = (
+      <section className='movie-section' id={this.props.id}>
+        {this.state.movie ? <img className="backdrop" src={this.state.movie.backdrop_path} alt={`${this.state.movie.title}`} /> : ''}
+        <div className='movie-styling'>
+          {this.state.movie ? <img className="poster" src={this.state.movie.poster_path} alt={`${this.state.movie.title} promotional poster`} /> : ''}
+          <div className="movie-info">
+            {this.state.movie ? <h2>{this.state.movie.title}</h2> : ''}
+            {this.state.movie && this.state.movie.tagline ? <p className="tagline">{this.state.movie.tagline}</p> : ''}
+            {this.state.movie && this.state.movie.genres ? <p>Genres: {this.state.genres}</p> : ''}
+            {this.state.movie && this.state.movie.average_rating ? <p>Average Rating: {this.state.movie.average_rating}</p> : ''}
+            {this.state.movie && this.state.movie.overview ? <p>Overview: {this.state.movie.overview}</p> : ''}
+            {this.state.movie && this.state.movie.runtime ? <p>Runtime: {this.timeConvert(this.state.movie.runtime)}</p>: ''}
+            {this.state.movie && this.state.movie.budget ? <p>Total budget: {this.state.formatter.format(this.state.movie.budget)}</p> : ''}
+            {this.state.movie && this.state.movie.revenue ? <p>Total revenue: {this.state.formatter.format(this.state.movie.revenue)}</p> : ''}
+          </div>
         </div>
-      </div>
+      </section>
+    )
+    return (
+      <React.Fragment>
+       {section}
+       </React.Fragment>
+    )
+  }
 
-    </section>
-  )
 }
 
 
