@@ -26,7 +26,8 @@ class Movie extends Component {
     getData(`movies`, id)
     .then(result => result.movie)
     .then(data => this.setState({movie: data, genres: data.genres.join(', ')}))
-    .catch(err => console.log(err))
+    .catch(err => {
+      return this.props.showError({err})})
   }
 
   timeConvert = (num) => {

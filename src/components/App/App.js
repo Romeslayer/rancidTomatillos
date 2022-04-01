@@ -39,6 +39,12 @@ class App extends Component {
     })
   }
 
+  showError = ({err}) => {
+    console.log(err)
+    this.setState({hasError: true, message: err.message})
+
+  }
+
   render() {
     const main = (
       <main className='app'>
@@ -47,13 +53,13 @@ class App extends Component {
           <Route exact path='/movies' render={ ()=>  <Header filter={this.filter} /> } />
           <Route render={() => <Header />}   />
         </Switch>
-
+          {this.state.hasError ? <Redirect from='/' to='/error' /> : '' }
         <Switch>
           <Route exact path='/movies' render={ () => <Main movies={this.state.displayed} /> } />
           <Route exact path='/movies/:id' render={({match}) => {
-            return <Movie id={match.params.id}/>
+            return <Movie id={match.params.id} showError={this.showError}/>
           }}/>
-          <Route path='/error' render={() => <DisplayMessage message={this.state.message} /> } />
+          <Route exact path='/error' render={() => <DisplayMessage message={this.state.message} /> } />
         </Switch>
       </main>
     )
