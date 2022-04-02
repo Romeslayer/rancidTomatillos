@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
-import Header from '../Header/Header.js'
-import Main from '../Main/Main.js'
-import Movie from '../Movie/Movie.js'
-import DisplayMessage from '../DisplayMessage/DisplayMessage.js'
-import getData from '../../apiCalls.js'
-import {Route, Switch, Redirect} from 'react-router-dom'
+import React, { Component } from 'react';
+import Header from '../Header/Header.js';
+import Main from '../Main/Main.js';
+import Movie from '../Movie/Movie.js';
+import DisplayMessage from '../DisplayMessage/DisplayMessage.js';
+import NoPage from '../NoPage/NoPage.js';
+import getData from '../../apiCalls.js';
+import {Route, Switch, Redirect} from 'react-router-dom';
 
 import './App.css'
 
@@ -54,7 +55,7 @@ class App extends Component {
      })
      .catch(err => this.setState({hasError: true, message: err.message}))
     })
-    
+
   }
 
   render() {
@@ -72,6 +73,7 @@ class App extends Component {
             return <Movie id={match.params.id} showError={this.showError}/>
           }}/>
           <Route exact path='/error' render={() => <DisplayMessage message={this.state.message} /> } />
+          <Route render={() => <NoPage />} />
         </Switch>
       </main>
     )
