@@ -8,9 +8,7 @@
    - End-to-end testing with Cypress
    - Refactor with Router to create a multipage web application 
 
-
-![Screen Shot 2022-04-04 at 1 45 17 PM](https://user-images.githubusercontent.com/48331256/161620221-7ff4ea4b-22e9-4a84-a08a-28252f5f519b.png)
-
+![Screen Recording 2022-04-04 at 1 46 09 PM](https://user-images.githubusercontent.com/20838033/161623064-44ae8da8-2375-4174-9809-a771746a0ef2.gif)
 
 
 
