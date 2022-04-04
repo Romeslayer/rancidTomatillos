@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/rancidTomatillos/static/css/main.49f13835.css",
-    "main.js": "/rancidTomatillos/static/js/main.ef26207a.js",
+    "main.js": "/rancidTomatillos/static/js/main.ef936136.js",
     "static/js/787.fb99121c.chunk.js": "/rancidTomatillos/static/js/787.fb99121c.chunk.js",
     "index.html": "/rancidTomatillos/index.html",
     "main.49f13835.css.map": "/rancidTomatillos/static/css/main.49f13835.css.map",
-    "main.ef26207a.js.map": "/rancidTomatillos/static/js/main.ef26207a.js.map",
+    "main.ef936136.js.map": "/rancidTomatillos/static/js/main.ef936136.js.map",
     "787.fb99121c.chunk.js.map": "/rancidTomatillos/static/js/787.fb99121c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.49f13835.css",
-    "static/js/main.ef26207a.js"
+    "static/js/main.ef936136.js"
   ]
 }
