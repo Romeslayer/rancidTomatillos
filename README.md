@@ -15,7 +15,9 @@
 ## How to Run
   This app is deployed on GitHub pages and can be found [here](https://romeslayer.github.io/rancidTomatillos/)
 
-## About
+## App Progression
+
+We started building the app with a wireframe and component structure. Using those to start off with we had created a React App that was single paged, but fully functional. Then we introduced a new technology Router. Router allowed us to make our React application respond how a typical webpage would.
 
 
 ### Tech
